@@ -1,0 +1,12 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "file manager",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": "git@github.com:Jekman87/file-manager.git",
+  "author": "Jekman87",
+  "license": "MIT"
+}
