@@ -20,7 +20,10 @@ import customOS from './modules/os/index.js';
 import calculateHash from './modules/hash/calculateHash.js';
 import compress from './modules/zip/compress.js';
 import decompress from './modules/zip/decompress.js';
-import { INVALID_INPUT_MESSAGE, OPERATION_FAILED_MESSAGE } from './utils/constants.js';
+import {
+    INVALID_INPUT_MESSAGE,
+    OPERATION_FAILED_MESSAGE,
+} from './utils/constants.js';
 
 const userName = getUserName();
 chdir(homedir());

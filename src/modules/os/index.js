@@ -3,6 +3,7 @@ import getCPUS from './getCPUS.js';
 import getHomeDir from './getHomedir.js';
 import getUserName from './getUserName.js';
 import getArchitecture from './getArchitecture.js';
+import { INVALID_INPUT_MESSAGE } from '../../utils/constants.js';
 
 const customOS = (arg) => {
     switch (arg) {
@@ -25,6 +26,9 @@ const customOS = (arg) => {
         case '--architecture':
             getArchitecture();
             break;
+
+        default:
+            throw new Error(INVALID_INPUT_MESSAGE);
     }
 };
 

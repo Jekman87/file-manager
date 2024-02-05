@@ -2,6 +2,7 @@ import { argv, cwd } from 'node:process';
 import { DEFAULT_USER_NAME, USER_NAME_KEY } from './constants.js';
 import { EOL } from 'node:os';
 import { access, constants } from 'node:fs/promises';
+import { parse } from 'node:path';
 
 export const getUserName = () =>
     argv
