@@ -1,7 +1,7 @@
 import { argv, cwd } from 'node:process';
 import { DEFAULT_USER_NAME, USER_NAME_KEY } from './constants.js';
 import { EOL } from 'node:os';
-import { parse } from 'node:path';
+import { access, constants } from 'node:fs/promises';
 
 export const getUserName = () =>
     argv
@@ -18,10 +18,16 @@ export const printByeMessage = (userName) =>
 export const printCWD = () =>
     console.log(`${EOL}You are currently in ${cwd()}`);
 
-export const printInvalidInputMessage = () => console.log('Invalid input');
-
-export const printFailMessage = () => console.log('Operation failed');
-
 export const getRootPath = (filename) => parse(filename).root;
 
 export const getFilename = (filename) => parse(filename).base;
+
+export const isFileExists = async (path) => {
+    try {
+        await access(path, constants.F_OK);
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};

@@ -5,9 +5,7 @@ import {
     getUserName,
     printByeMessage,
     printCWD,
-    printFailMessage,
     printHelloMessage,
-    printInvalidInputMessage,
 } from './utils/helpers.js';
 import up from './modules/nwd/up.js';
 import cd from './modules/nwd/cd.js';
@@ -20,6 +18,9 @@ import moveFile from './modules/fs/moveFile.js';
 import deleteFile from './modules/fs/deleteFile.js';
 import customOS from './modules/os/index.js';
 import calculateHash from './modules/hash/calculateHash.js';
+import compress from './modules/zip/compress.js';
+import decompress from './modules/zip/decompress.js';
+import { INVALID_INPUT_MESSAGE, OPERATION_FAILED_MESSAGE } from './utils/constants.js';
 
 const userName = getUserName();
 chdir(homedir());
@@ -39,10 +40,6 @@ rl.on('line', async (line) => {
 
     try {
         switch (command) {
-            case 'hello':
-                console.log('world!');
-                break;
-
             case 'up':
                 up();
                 break;
@@ -87,17 +84,28 @@ rl.on('line', async (line) => {
                 await calculateHash(args[0]);
                 break;
 
+            case 'compress':
+                await compress(args[0], args[1]);
+                break;
+
+            case 'decompress':
+                await decompress(args[0], args[1]);
+                break;
+
             case '.exit':
                 rl.close();
                 break;
 
             default:
-                printInvalidInputMessage();
+                console.log(INVALID_INPUT_MESSAGE);
                 break;
         }
     } catch (e) {
-        console.log(e);
-        // printFailMessage();
+        console.log(
+            e.message === INVALID_INPUT_MESSAGE
+                ? INVALID_INPUT_MESSAGE
+                : OPERATION_FAILED_MESSAGE
+        );
     }
 
     printCWD();
