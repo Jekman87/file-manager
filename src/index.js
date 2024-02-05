@@ -19,6 +19,7 @@ import copyFile from './modules/fs/copyFile.js';
 import moveFile from './modules/fs/moveFile.js';
 import deleteFile from './modules/fs/deleteFile.js';
 import customOS from './modules/os/index.js';
+import calculateHash from './modules/hash/calculateHash.js';
 
 const userName = getUserName();
 chdir(homedir());
@@ -80,6 +81,10 @@ rl.on('line', async (line) => {
 
             case 'os':
                 customOS(args[0]);
+                break;
+
+            case 'hash':
+                await calculateHash(args[0]);
                 break;
 
             case '.exit':
