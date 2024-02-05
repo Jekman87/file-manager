@@ -12,6 +12,12 @@ import {
 import up from './modules/nwd/up.js';
 import cd from './modules/nwd/cd.js';
 import ls from './modules/nwd/ls.js';
+import readFile from './modules/fs/readFile.js';
+import createFile from './modules/fs/createFile.js';
+import renameFile from './modules/fs/renameFile.js';
+import copyFile from './modules/fs/copyFile.js';
+import moveFile from './modules/fs/moveFile.js';
+import deleteFile from './modules/fs/deleteFile.js';
 
 const userName = getUserName();
 chdir(homedir());
@@ -42,6 +48,24 @@ rl.on('line', async (line) => {
                 break;
             case 'ls':
                 await ls();
+                break;
+            case 'cat':
+                await readFile(args[0]);
+                break;
+            case 'add':
+                await createFile(args[0]);
+                break;
+            case 'rn':
+                await renameFile(args[0], args[1]);
+                break;
+            case 'cp':
+                await copyFile(args[0], args[1]);
+                break;
+            case 'mv':
+                await moveFile(args[0], args[1]);
+                break;
+            case 'rm':
+                await deleteFile(args[0]);
                 break;
             case '.exit':
                 rl.close();

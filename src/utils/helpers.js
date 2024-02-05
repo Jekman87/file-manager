@@ -23,3 +23,5 @@ export const printInvalidInputMessage = () => console.log('Invalid input');
 export const printFailMessage = () => console.log('Operation failed');
 
 export const getRootPath = (filename) => parse(filename).root;
+
+export const getFilename = (filename) => parse(filename).base;
