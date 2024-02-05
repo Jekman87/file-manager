@@ -18,6 +18,7 @@ import renameFile from './modules/fs/renameFile.js';
 import copyFile from './modules/fs/copyFile.js';
 import moveFile from './modules/fs/moveFile.js';
 import deleteFile from './modules/fs/deleteFile.js';
+import customOS from './modules/os/index.js';
 
 const userName = getUserName();
 chdir(homedir());
@@ -40,42 +41,57 @@ rl.on('line', async (line) => {
             case 'hello':
                 console.log('world!');
                 break;
+
             case 'up':
                 up();
                 break;
+
             case 'cd':
                 cd(args[0]);
                 break;
+
             case 'ls':
                 await ls();
                 break;
+
             case 'cat':
                 await readFile(args[0]);
                 break;
+
             case 'add':
                 await createFile(args[0]);
                 break;
+
             case 'rn':
                 await renameFile(args[0], args[1]);
                 break;
+
             case 'cp':
                 await copyFile(args[0], args[1]);
                 break;
+
             case 'mv':
                 await moveFile(args[0], args[1]);
                 break;
+
             case 'rm':
                 await deleteFile(args[0]);
                 break;
+
+            case 'os':
+                customOS(args[0]);
+                break;
+
             case '.exit':
                 rl.close();
                 break;
+
             default:
                 printInvalidInputMessage();
                 break;
         }
     } catch (e) {
-        console.log(e)
+        console.log(e);
         // printFailMessage();
     }
 
